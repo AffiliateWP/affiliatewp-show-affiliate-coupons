@@ -5,7 +5,7 @@
  * Description: Shows an affiliate their available coupon codes in the affiliate area
  * Author: Pippin Williamson and Andrew Munro
  * Author URI: http://affiliatewp.com
- * Version: 1.0
+ * Version: 1.0.1
  * Text Domain: affiliatewp-show-affiliate-coupons
  * Domain Path: languages
  *
@@ -49,7 +49,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		 *
 		 * @since 1.0
 		 */
-		private $version = '1.0';
+		private $version = '1.0.1';
 
 		/**
 		 * Main AffiliateWP_Show_Affiliate_Coupons Instance
