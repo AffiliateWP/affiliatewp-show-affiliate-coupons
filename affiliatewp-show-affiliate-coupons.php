@@ -5,7 +5,7 @@
  * Description: Shows an affiliate their available coupon codes in the affiliate area
  * Author: Pippin Williamson and Andrew Munro
  * Author URI: http://affiliatewp.com
- * Version: 1.0.1
+ * Version: 1.0.2
  * Text Domain: affiliatewp-show-affiliate-coupons
  * Domain Path: languages
  *
@@ -49,7 +49,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		 *
 		 * @since 1.0
 		 */
-		private $version = '1.0.1';
+		private $version = '1.0.2';
 
 		/**
 		 * Main AffiliateWP_Show_Affiliate_Coupons Instance
@@ -64,7 +64,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		 */
 		public static function instance() {
 			if ( ! isset( self::$instance ) && ! ( self::$instance instanceof AffiliateWP_Show_Affiliate_Coupons ) ) {
-				
+
 				self::$instance = new AffiliateWP_Show_Affiliate_Coupons;
 				self::$instance->setup_constants();
 				self::$instance->load_textdomain();
@@ -123,7 +123,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		public static function reset() {
 			self::$instance = null;
 		}
-		
+
 		/**
 		 * Setup plugin constants
 		 *
@@ -194,10 +194,8 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		 * @return      void
 		 */
 		private function includes() {
-		
-		}
 
-		
+		}
 
 		/**
 		 * Setup the default hooks and actions
@@ -217,9 +215,12 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 			// Add template folder
 			add_filter( 'affwp_template_paths', array( $this, 'template_paths' ) );
 
+			// shortcode
+			add_shortcode( 'affiliate_coupons', array( $this, 'affiliate_coupons_shortcode' ) );
+
 			// plugin meta
 			add_filter( 'plugin_row_meta', array( $this, 'plugin_meta' ), null, 2 );
-				
+
 		}
 
 		/**
@@ -252,8 +253,8 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		 */
 		public function supported_integrations() {
 
-			$supported_integrations = array( 
-				'edd', 
+			$supported_integrations = array(
+				'edd',
 				'woocommerce',
 				'rcp',
 				'exchange'
@@ -280,7 +281,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 				<a href="<?php echo esc_url( add_query_arg( 'tab', 'coupons' ) ); ?>"><?php _e( 'Coupons', 'affiliatewp-show-affiliate-coupons' ); ?></a>
 			</li>
 
-		<?php	
+		<?php
 		}
 
 		/**
@@ -326,7 +327,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 
 			// cannot access tab
 			if ( $this->is_tab() && ( ! $this->integration_supported() || ! $this->get_coupons() ) ) {
-				wp_redirect( affiliate_wp()->login->get_login_url() ); 
+				wp_redirect( affiliate_wp()->login->get_login_url() );
 				exit;
 			}
 		}
@@ -357,9 +358,9 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 
 			$affiliate_id = affwp_get_affiliate_id();
 
-			$post_ids = $wpdb->get_results( 
+			$post_ids = $wpdb->get_results(
 				"
-				SELECT post_id 
+				SELECT post_id
 				FROM $wpdb->postmeta
 				WHERE ( meta_key = 'affwp_discount_affiliate' OR meta_key = 'affwp_coupon_affiliate' )
 				AND meta_value = $affiliate_id
@@ -369,13 +370,13 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 			$ids = wp_list_pluck( $post_ids, 'post_id' );
 
 			$coupons = array();
-			
+
 			// get enabled integrations
 			$enabled_integrations = affiliate_wp()->integrations->get_enabled_integrations();
 
 			if ( $ids ) {
 				foreach ( $ids as $id ) {
-					
+
 					switch ( get_post_type( $id ) ) {
 						// EDD
 						case 'edd_discount':
@@ -383,11 +384,11 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 						if ( array_key_exists( 'edd', $enabled_integrations ) && edd_is_discount_active( $id ) ) {
 							$coupons[$id]['code'] = edd_get_discount_code( $id );
 							$coupons[$id]['amount'] = edd_format_discount_rate( edd_get_discount_type( $id ), edd_get_discount_amount( $id ) );
-							
+
 						}
 
-							break;	
-						
+							break;
+
 						// WooCommerce
 						case 'shop_coupon':
 
@@ -408,23 +409,43 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 							$coupons[$id]['amount'] = esc_attr( it_exchange_get_coupon_discount_label( $id ) );
 						}
 
-							break;	
+							break;
 
 						 default:
 						 	break;
 					}
-					
-					
+
+
 				}
 			}
-			
+
 			if ( ! empty( $coupons ) ) {
 				return $coupons;
 			}
-			
+
 			return false;
 		}
 
+		/**
+		* [affiliate_coupons] shortcode
+		*
+		* @since  1.0
+		*/
+		public function affiliate_coupons_shortcode( $atts, $content = null ) {
+
+			if ( ! ( affwp_is_affiliate() && affwp_is_active_affiliate() ) ) {
+				return;
+			}
+
+			ob_start();
+
+			affiliate_wp()->templates->get_template_part( 'dashboard-tab', 'coupons' );
+
+			$content = ob_get_clean();
+
+			return do_shortcode( $content );
+		}
+		
 		/**
 		 * Modify plugin metalinks
 		 *
