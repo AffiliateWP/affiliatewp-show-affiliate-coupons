@@ -5,7 +5,7 @@
  * Description: Shows an affiliate their available coupon codes in the affiliate area
  * Author: Pippin Williamson and Andrew Munro
  * Author URI: http://affiliatewp.com
- * Version: 1.0.2
+ * Version: 1.0.3
  * Text Domain: affiliatewp-show-affiliate-coupons
  * Domain Path: languages
  *
@@ -49,7 +49,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		 *
 		 * @since 1.0
 		 */
-		private $version = '1.0.2';
+		private $version = '1.0.3';
 
 		/**
 		 * Main AffiliateWP_Show_Affiliate_Coupons Instance
@@ -220,6 +220,11 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 
 			// plugin meta
 			add_filter( 'plugin_row_meta', array( $this, 'plugin_meta' ), null, 2 );
+
+			// Add to the tabs list for 1.8.1 (fails silently if the hook doesn't exist).
+			add_filter( 'affwp_affiliate_area_tabs', function( $tabs ) {
+				return array_merge( $tabs, array( 'coupons' ) );
+			} );
 
 		}
 
@@ -445,7 +450,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 
 			return do_shortcode( $content );
 		}
-		
+
 		/**
 		 * Modify plugin metalinks
 		 *
