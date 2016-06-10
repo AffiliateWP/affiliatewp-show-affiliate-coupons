@@ -263,7 +263,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 				'woocommerce',
 				'rcp',
 				'exchange',
-				'memberpress',
+				'memberpress'
 			);
 
 			return $supported_integrations;
