@@ -420,7 +420,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 						// MemberPress
 						case 'memberpresscoupon':
 
-						if ( array_key_exists( 'memberpress', $enabled_integrations ) ) {
+						if ( array_key_exists( 'memberpress', $enabled_integrations ) && 'publish' == get_post_status( $id ) ) {
 
 							$coupons[$id]['code']   = get_the_title( $id );
 							$coupons[$id]['amount'] = esc_html( get_post_meta( $id, '_mepr_coupons_discount_amount', true ) ) . ' (' . esc_html( get_post_meta( $id, '_mepr_coupons_discount_type', true ) ) . ')';
@@ -429,7 +429,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 							break;
 
 						 default:
-						 	break;
+							break;
 					}
 
 
@@ -473,15 +473,15 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		 * @return      array $links The modified links array
 		 */
 		public function plugin_meta( $links, $file ) {
-		    if ( $file == plugin_basename( __FILE__ ) ) {
-		        $plugins_link = array(
-		            '<a title="' . __( 'Get more add-ons for AffiliateWP', 'affiliatewp-show-affiliate-coupons' ) . '" href="http://affiliatewp.com/addons/" target="_blank">' . __( 'Get add-ons', 'affiliatewp-show-affiliate-coupons' ) . '</a>'
-		        );
+			if ( $file == plugin_basename( __FILE__ ) ) {
+				$plugins_link = array(
+					'<a title="' . __( 'Get more add-ons for AffiliateWP', 'affiliatewp-show-affiliate-coupons' ) . '" href="http://affiliatewp.com/addons/" target="_blank">' . __( 'Get add-ons', 'affiliatewp-show-affiliate-coupons' ) . '</a>'
+				);
 
-		        $links = array_merge( $links, $plugins_link );
-		    }
+				$links = array_merge( $links, $plugins_link );
+			}
 
-		    return $links;
+			return $links;
 		}
 	}
 
@@ -498,16 +498,16 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 	 * @return object The one true AffiliateWP_Show_Affiliate_Coupons Instance
 	 */
 	function affiliatewp_show_affiliate_coupons() {
-	    if ( ! class_exists( 'Affiliate_WP' ) ) {
-	        if ( ! class_exists( 'AffiliateWP_Activation' ) ) {
-	            require_once 'includes/class-activation.php';
-	        }
+		if ( ! class_exists( 'Affiliate_WP' ) ) {
+			if ( ! class_exists( 'AffiliateWP_Activation' ) ) {
+				require_once 'includes/class-activation.php';
+			}
 
-	        $activation = new AffiliateWP_Activation( plugin_dir_path( __FILE__ ), basename( __FILE__ ) );
-	        $activation = $activation->run();
-	    } else {
-	        return AffiliateWP_Show_Affiliate_Coupons::instance();
-	    }
+			$activation = new AffiliateWP_Activation( plugin_dir_path( __FILE__ ), basename( __FILE__ ) );
+			$activation = $activation->run();
+		} else {
+			return AffiliateWP_Show_Affiliate_Coupons::instance();
+		}
 	}
 	add_action( 'plugins_loaded', 'affiliatewp_show_affiliate_coupons', 100 );
 
