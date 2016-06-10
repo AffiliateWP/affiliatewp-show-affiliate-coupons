@@ -262,7 +262,8 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 				'edd',
 				'woocommerce',
 				'rcp',
-				'exchange'
+				'exchange',
+				'memberpress',
 			);
 
 			return $supported_integrations;
@@ -412,6 +413,17 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 
 							$coupons[$id]['code']   = get_post_meta( $id, '_it-basic-code', true );
 							$coupons[$id]['amount'] = esc_attr( it_exchange_get_coupon_discount_label( $id ) );
+						}
+
+							break;
+
+						// MemberPress
+						case 'memberpresscoupon':
+
+						if ( array_key_exists( 'memberpress', $enabled_integrations ) ) {
+
+							$coupons[$id]['code']   = get_the_title( $id );
+							$coupons[$id]['amount'] = esc_html( get_post_meta( $id, '_mepr_coupons_discount_amount', true ) ) . ' (' . esc_html( get_post_meta( $id, '_mepr_coupons_discount_type', true ) ) . ')';
 						}
 
 							break;
