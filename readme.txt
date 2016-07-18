@@ -2,8 +2,8 @@
 Contributors: sumobi, mordauk
 Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, membership, referrals, marketing
 Requires at least: 3.3
-Tested up to: 4.5.2
-Stable tag: 1.0.3
+Tested up to: 4.6
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,7 +11,7 @@ Shows an affiliate their available coupon codes in the affiliate area
 
 == Description ==
 
-> This plugin requires [AffiliateWP](http://affiliatewp.com/ "AffiliateWP") in order to function.
+> This plugin requires [AffiliateWP](https://affiliatewp.com "AffiliateWP") in order to function.
 
 This plugin allows you to show an affiliate any coupons that they have assigned
 to them. The coupon codes will be shown in a new "coupons" tab of the affiliate
@@ -54,6 +54,9 @@ OR you can just install it with WordPress by going to Plugins >> Add New >> and 
 New [affiliate_coupons] shortcode to show the affiliate's coupons on any page
 
 == Changelog ==
+
+= 1.0.4 =
+* New: Added support for MemberPress
 
 = 1.0.3 =
 * Fix: An issue with the tab's content not loading correctly due to recent changes made in AffiliateWP v1.8.1
