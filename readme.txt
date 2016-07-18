@@ -29,6 +29,7 @@ Supported integrations:
 1. WooCommerce
 2. Easy Digital Downloads
 3. iThemes Exchange
+4. MemberPress
 
 Restrict Content Pro support is coming soon.
 
