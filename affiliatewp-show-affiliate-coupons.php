@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: AffiliateWP - Show Affiliate Coupons
- * Plugin URI: http://affiliatewp.com/addons/show-affiliate-coupons
+ * Plugin URI: https://affiliatewp.com/add-ons/official-free/show-affiliate-coupons/
  * Description: Shows an affiliate their available coupon codes in the affiliate area
- * Author: Pippin Williamson and Andrew Munro
- * Author URI: http://affiliatewp.com
- * Version: 1.0.4
+ * Author: AffiliateWP
+ * Author URI: https://affiliatewp.com
+ * Version: 1.0.5
  * Text Domain: affiliatewp-show-affiliate-coupons
  * Domain Path: languages
  *
@@ -49,7 +49,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		 *
 		 * @since 1.0
 		 */
-		private $version = '1.0.4';
+		private $version = '1.0.5';
 
 		/**
 		 * Main AffiliateWP_Show_Affiliate_Coupons Instance
@@ -346,7 +346,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		 * @return void
 		 */
 		public function template_paths( $file_paths ) {
-			$file_paths[81] = plugin_dir_path( __FILE__ ) . '/templates';
+			$file_paths[82] = plugin_dir_path( __FILE__ ) . '/templates';
 
 			return $file_paths;
 		}
