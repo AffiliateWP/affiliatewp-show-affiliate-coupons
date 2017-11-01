@@ -305,7 +305,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 			
 			// Return the tabs.
 			return $tabs;
-		}	
+		}
 
 		/**
 		 * Determine if the user has at least version 2.1.7 of AffiliateWP.
