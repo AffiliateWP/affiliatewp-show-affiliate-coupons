@@ -5,7 +5,7 @@
  * Description: Shows an affiliate their available coupon codes in the affiliate area
  * Author: AffiliateWP
  * Author URI: https://affiliatewp.com
- * Version: 1.0.5
+ * Version: 1.0.6
  * Text Domain: affiliatewp-show-affiliate-coupons
  * Domain Path: languages
  *
@@ -49,7 +49,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		 *
 		 * @since 1.0
 		 */
-		private $version = '1.0.5';
+		private $version = '1.0.6';
 
 		/**
 		 * Main AffiliateWP_Show_Affiliate_Coupons Instance
@@ -222,9 +222,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 			add_filter( 'plugin_row_meta', array( $this, 'plugin_meta' ), null, 2 );
 
 			// Add to the tabs list for 1.8.1 (fails silently if the hook doesn't exist).
-			add_filter( 'affwp_affiliate_area_tabs', function( $tabs ) {
-				return array_merge( $tabs, array( 'coupons' ) );
-			} );
+			add_filter( 'affwp_affiliate_area_tabs', array( $this, 'register_tab' ), 10, 1 );
 
 		}
 
@@ -270,13 +268,77 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		}
 
 		/**
+		 * Register the "Coupons" tab.
+		 * 
+		 * @since  1.8.1
+		 * @since  2.1.7 The tab being registered requires both a slug and title.
+		 * 
+		 * @return array $tabs The list of tabs
+		 */
+		public function register_tab( $tabs ) {
+
+			/**
+			 * User is on older version of AffiliateWP, use the older method of
+			 * registering the tab. 
+			 * 
+			 * The previous method was to register the slug, and add the tab
+			 * separately, @see add_tab()
+			 * 
+			 * @since 1.0.6
+			 */
+			if ( ! $this->has_2_1_7() ) {
+				return array_merge( $tabs, array( 'coupons' ) );
+			}
+
+			/**
+			 * Don't show tab to affiliate if they don't have access.
+			 * Also makes sure tab is properly outputted in Affiliate Area Tabs.
+			 * 
+			 * @since 1.0.6
+			 */
+			if ( $this->no_access() && ! is_admin() ) {
+				return $tabs;
+			}
+
+			// Register the "Coupons" tab.
+			$tabs['coupons'] = __( 'Coupons', 'affiliatewp-show-affiliate-coupons' );
+			
+			// Return the tabs.
+			return $tabs;
+		}	
+
+		/**
+		 * Determine if the user has at least version 2.1.7 of AffiliateWP.
+		 *
+		 * @since 1.0.6
+		 * 
+		 * @return boolean True if AffiliateWP v2.1.7 or newer, false otherwise.
+		 */
+		public function has_2_1_7() {
+
+			$return = true;
+
+			if ( version_compare( AFFILIATEWP_VERSION, '2.1.7', '<' ) ) {
+				$return = false;
+			}
+
+			return $return;
+		}
+
+		/**
 		 * Add tab
 		 *
 		 * @since 1.0
+		 * @since 1.0.6 Only kept for backwards compatibility.
 		 *
 		 * @return void
 		 */
 		public function add_tab( $affiliate_id, $active_tab ) {
+
+			// Return early if user has AffiliateWP 2.1.7 or newer. This method is no longer needed.
+			if ( $this->has_2_1_7() ) {
+				return;
+			}
 
 			if ( $this->no_access() ) {
 				return;

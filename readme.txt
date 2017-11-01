@@ -2,8 +2,8 @@
 Contributors: sumobi, mordauk
 Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, membership, referrals, marketing
 Requires at least: 3.3
-Tested up to: 4.7.5
-Stable tag: 1.0.5
+Tested up to: 4.8.3
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,7 +33,7 @@ Supported integrations:
 
 **What is AffiliateWP?**
 
-[AffiliateWP](http://affiliatewp.com/ "AffiliateWP") provides a complete affiliate management system for your WordPress website that seamlessly integrates with all major WordPress e-commerce and membership platforms. It aims to provide everything you need in a simple, clean, easy to use system that you will love to use.
+[AffiliateWP](https://affiliatewp.com/ "AffiliateWP") provides a complete affiliate management system for your WordPress website that seamlessly integrates with all major WordPress e-commerce and membership platforms. It aims to provide everything you need in a simple, clean, easy to use system that you will love to use.
 
 == Installation ==
 
@@ -53,6 +53,9 @@ OR you can just install it with WordPress by going to Plugins >> Add New >> and 
 Changed the template file path priority to avoid a conflict with the Direct Link Tracking add-on
 
 == Changelog ==
+
+= 1.0.6 =
+* New: The "Coupons" tab now shows within the Affiliate Area Tabs add-on. Affiliate Area Tabs v1.1.6 and AffiliateWP v2.1.7 required.
 
 = 1.0.5 =
 * Tweak: Changed the template file path priority to avoid a conflict with the Direct Link Tracking add-on
