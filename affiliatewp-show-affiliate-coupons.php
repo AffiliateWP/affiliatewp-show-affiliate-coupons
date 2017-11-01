@@ -296,10 +296,12 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 			 * 
 			 * @since 1.0.6
 			 */
-			if ( $this->no_access() && ! is_admin() ) {
-				return $tabs;
+			if ( ! is_admin() ) {
+				if ( $this->no_access() ) {
+					return $tabs;
+				}
 			}
-
+			 
 			// Register the "Coupons" tab.
 			$tabs['coupons'] = __( 'Coupons', 'affiliatewp-show-affiliate-coupons' );
 			
