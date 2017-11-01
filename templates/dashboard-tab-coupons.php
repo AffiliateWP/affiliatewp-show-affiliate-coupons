@@ -8,7 +8,7 @@ $coupons   = $affwp_sad->get_coupons();
 	<h4><?php _e( 'Coupons', 'affiliatewp-show-affiliate-coupons' ); ?></h4>
 
 	<?php if ( $coupons ) : ?>
-	<table class="affwp-table">
+	<table class="affwp-table affwp-table-responsive">
 		<thead>
 			<tr>
 				<th><?php _e( 'Coupon Code', 'affiliatewp-show-affiliate-coupons' ); ?></th>
@@ -20,8 +20,8 @@ $coupons   = $affwp_sad->get_coupons();
 		<?php if ( $coupons ) : ?>
 			<?php foreach ( $coupons as $coupon ) :	?>
 				<tr>
-					<td><?php echo $coupon['code']; ?></td>
-					<td><?php echo $coupon['amount']; ?></td>
+					<td data-th="<?php _e( 'Coupon Code', 'affiliatewp-show-affiliate-coupons' ); ?>"><?php echo $coupon['code']; ?></td>
+					<td data-th="<?php _e( 'Amount', 'affiliatewp-show-affiliate-coupons' ); ?>"><?php echo $coupon['amount']; ?></td>
 				</tr>
 			<?php endforeach; ?>
 		<?php endif; ?>
