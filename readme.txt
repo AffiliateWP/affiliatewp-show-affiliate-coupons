@@ -55,7 +55,8 @@ Changed the template file path priority to avoid a conflict with the Direct Link
 == Changelog ==
 
 = 1.0.6 =
-* New: The "Coupons" tab now shows within the Affiliate Area Tabs add-on. Affiliate Area Tabs v1.1.6 and AffiliateWP v2.1.7 required.
+* New: The "Coupons" tab now shows within the Affiliate Area Tabs add-on. Affiliate Area Tabs v1.1.6 and AffiliateWP v2.1.7 required
+* Tweak: The table on the Coupons tab is now responsive
 
 = 1.0.5 =
 * Tweak: Changed the template file path priority to avoid a conflict with the Direct Link Tracking add-on
