@@ -2,8 +2,8 @@
 Contributors: sumobi, mordauk
 Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, membership, referrals, marketing
 Requires at least: 3.3
-Tested up to: 4.8.3
-Stable tag: 1.0.6
+Tested up to: 4.9
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,9 @@ OR you can just install it with WordPress by going to Plugins >> Add New >> and 
 Changed the template file path priority to avoid a conflict with the Direct Link Tracking add-on
 
 == Changelog ==
+
+= 1.0.7 =
+* Fix: PHP notice that could appear in some instances
 
 = 1.0.6 =
 * New: The "Coupons" tab now shows within the Affiliate Area Tabs add-on. Affiliate Area Tabs v1.1.6 and AffiliateWP v2.1.7 required

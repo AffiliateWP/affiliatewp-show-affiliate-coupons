@@ -5,7 +5,7 @@
  * Description: Shows an affiliate their available coupon codes in the affiliate area
  * Author: AffiliateWP
  * Author URI: https://affiliatewp.com
- * Version: 1.0.6
+ * Version: 1.0.7
  * Text Domain: affiliatewp-show-affiliate-coupons
  * Domain Path: languages
  *
@@ -49,7 +49,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 		 *
 		 * @since 1.0
 		 */
-		private $version = '1.0.6';
+		private $version = '1.0.7';
 
 		/**
 		 * Main AffiliateWP_Show_Affiliate_Coupons Instance
