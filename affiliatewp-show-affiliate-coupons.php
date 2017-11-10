@@ -428,6 +428,10 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 
 			$affiliate_id = affwp_get_affiliate_id();
 
+			if ( ! $affiliate_id ) {
+				return false;
+			}
+
 			$post_ids = $wpdb->get_results(
 				"
 				SELECT post_id
