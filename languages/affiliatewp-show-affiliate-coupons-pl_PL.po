@@ -1,0 +1,61 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AffiliateWP - Show Affiliate Coupons\n"
+"POT-Creation-Date: 2015-04-04 16:09-0600\n"
+"PO-Revision-Date: 2018-10-12 00:47+0200\n"
+"Language-Team: AffiliateWP <support@affiliatewp.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Last-Translator: Dariusz Zielonka <info@dariusz-zielonka.pl>\n"
+"Language: pl_PL\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../affiliatewp-show-affiliate-coupons.php:91
+#: ../affiliatewp-show-affiliate-coupons.php:103
+msgid "Cheatin&#8217; huh?"
+msgstr "Oszukujemy, co?"
+
+#: ../affiliatewp-show-affiliate-coupons.php:280
+#: ../templates/dashboard-tab-coupons.php:8
+msgid "Coupons"
+msgstr "Kupony"
+
+#: ../affiliatewp-show-affiliate-coupons.php:440
+msgid "Get more add-ons for AffiliateWP"
+msgstr "Więcej dodatków dla AffiliateWP"
+
+#: ../affiliatewp-show-affiliate-coupons.php:440
+msgid "Get add-ons"
+msgstr "Pobierz dodatki"
+
+#: ../includes/class-activation.php:47
+msgid "This plugin"
+msgstr "Ta wtyczka"
+
+#: ../includes/class-activation.php:82
+#, php-format
+msgid " requires %sAffiliateWP%s. Please activate it to continue."
+msgstr " wymaga %sAffiliateWP%s. Proszę aktywować ją, aby kontynuować."
+
+#: ../includes/class-activation.php:85
+#, php-format
+msgid " requires %sAffiliateWP%s. Please install it to continue."
+msgstr " wymaga %sAffiliateWP%s. Proszę zainstalować go, aby kontynuować."
+
+#: ../templates/dashboard-tab-coupons.php:14
+msgid "Coupon Code"
+msgstr "Kod kuponu"
+
+#: ../templates/dashboard-tab-coupons.php:15
+msgid "Amount"
+msgstr "Kwota"
+
+#: ../templates/dashboard-tab-coupons.php:32
+msgid "There are currently no discount codes to display."
+msgstr "Obecnie nie ma żadnych szczegółów zamówienia do wyświetlenia."
