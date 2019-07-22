@@ -3,8 +3,8 @@
  * Plugin Name: AffiliateWP - Show Affiliate Coupons
  * Plugin URI: https://affiliatewp.com/add-ons/official-free/show-affiliate-coupons/
  * Description: Shows an affiliate their available coupon codes in the affiliate area
- * Author: AffiliateWP
- * Author URI: https://affiliatewp.com
+ * Author: Sandhills Development, LLC
+ * Author URI: https://sandhillsdev.com
  * Version: 1.0.7
  * Text Domain: affiliatewp-show-affiliate-coupons
  * Domain Path: languages
