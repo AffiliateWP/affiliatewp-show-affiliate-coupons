@@ -563,7 +563,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 	 * Example: <?php $affiliatewp_show_affiliate_coupons = affiliatewp_show_affiliate_coupons(); ?>
 	 *
 	 * @since 1.0
-	 * @return object The one true AffiliateWP_Show_Affiliate_Coupons Instance
+	 * @return AffiliateWP_Show_Affiliate_Coupons The one true AffiliateWP_Show_Affiliate_Coupons Instance
 	 */
 	function affiliatewp_show_affiliate_coupons() {
 		if ( ! class_exists( 'Affiliate_WP' ) ) {
