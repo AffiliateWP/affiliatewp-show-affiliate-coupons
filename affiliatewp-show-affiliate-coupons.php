@@ -490,8 +490,20 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 
 						if ( array_key_exists( 'memberpress', $enabled_integrations ) && 'publish' == get_post_status( $id ) ) {
 
-							$coupons[$id]['code']   = get_the_title( $id );
-							$coupons[$id]['amount'] = esc_html( get_post_meta( $id, '_mepr_coupons_discount_amount', true ) ) . ' (' . esc_html( get_post_meta( $id, '_mepr_coupons_discount_type', true ) ) . ')';
+							$coupons[ $id ]['code']   = get_the_title( $id );
+							$coupons[ $id ]['amount'] = esc_html( get_post_meta( $id, '_mepr_coupons_discount_amount', true ) );
+
+							$type = get_post_meta( $id, '_mepr_coupons_discount_type', true );
+
+							switch ( $type ) {
+								case 'percent':
+									$coupons[ $id ]['amount'] .= ' (' . esc_html_x( 'percentage', 'Percentage amount type', 'affiliatewp-show-affiliate-coupons' ) . ')';
+									break;
+								case 'dollar':
+									$coupons[ $id ]['amount'] .= ' (' . esc_html_x( 'flat', 'Flat amount type', 'affiliatewp-show-affiliate-coupons' ) . ')';
+									break;
+								default: break;
+							}
 						}
 
 							break;
@@ -563,7 +575,7 @@ if ( ! class_exists( 'AffiliateWP_Show_Affiliate_Coupons' ) ) {
 	 * Example: <?php $affiliatewp_show_affiliate_coupons = affiliatewp_show_affiliate_coupons(); ?>
 	 *
 	 * @since 1.0
-	 * @return object The one true AffiliateWP_Show_Affiliate_Coupons Instance
+	 * @return AffiliateWP_Show_Affiliate_Coupons The one true AffiliateWP_Show_Affiliate_Coupons Instance
 	 */
 	function affiliatewp_show_affiliate_coupons() {
 		if ( ! class_exists( 'Affiliate_WP' ) ) {
